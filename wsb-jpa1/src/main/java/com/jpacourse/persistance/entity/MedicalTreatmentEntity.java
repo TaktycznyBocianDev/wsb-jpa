@@ -18,6 +18,12 @@ public class MedicalTreatmentEntity {
 	@Enumerated(EnumType.STRING)
 	private TreatmentType type;
 
+	// Dwustronna relacja, jedna wizyta może mieć w sobie kilka medycznych zabiegów
+	@ManyToOne
+	@JoinColumn(name = "VISIT_ID", nullable = false)
+	private VisitEntity visit; // Dwustronna relacja
+
+
 	public Long getId() {
 		return id;
 	}

@@ -32,9 +32,9 @@ public class DoctorEntity {
 	@Enumerated(EnumType.STRING)
 	private Specialization specialization;
 
-	@ManyToOne
-	@JoinColumn(name = "ADDRESS_ID", nullable = false)
-	private AddressEntity address;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "DOCTOR_ID") //
+	private List<AddressEntity> addresses; //Relacja dwustronna, lekarz może miec kilka adresow, ale
 
 
 	public Long getId() {

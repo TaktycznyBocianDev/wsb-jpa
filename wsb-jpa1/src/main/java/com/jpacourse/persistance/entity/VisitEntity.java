@@ -1,6 +1,7 @@
 package com.jpacourse.persistance.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.*;
 
@@ -16,6 +17,18 @@ public class VisitEntity {
 
 	@Column(nullable = false)
 	private LocalDateTime time;
+
+	@ManyToOne
+	@JoinColumn(name = "DOCTOR_ID", nullable = false)
+	private DoctorEntity doctor; // Jednostronna relacja od strony dziecka
+
+	@ManyToOne
+	@JoinColumn(name = "PATIENT_ID", nullable = false)
+	private PatientEntity patient; // Jednostronna relacja od strony dziecka
+
+	// Dwustronna relacja, jedna wizyta może mieć w sobie kilka medycznych zabiegów
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "visit")
+	private List<MedicalTreatmentEntity> treatments;
 
 	public Long getId() {
 		return id;

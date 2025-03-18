@@ -19,6 +19,10 @@ public class AddressEntity {
 
 	private String postalCode;
 
+	@ManyToOne
+	@JoinColumn(name = "PATIENT_ID")
+	private PatientEntity patient; //Relacja dwustronna (pacjent zna swoje adresy, a adres wie do kogo należy)
+
 	public Long getId() {
 		return id;
 	}
