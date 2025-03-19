@@ -32,9 +32,14 @@ public class DoctorEntity {
 	@Enumerated(EnumType.STRING)
 	private Specialization specialization;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "DOCTOR_ID") //
-	private List<AddressEntity> addresses; //Relacja dwustronna, lekarz może miec kilka adresow, ale
+	//Relacja jednostronna, po stronie rodzica -> lekarz może mieć kilka wizyt w planie.
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "visit")
+	private List<VisitEntity> visits;
+
+	//Relacja dwustronna (lekarz zna swoje adresy, a adres wie do kogo należy)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "DOCTOR_ID")
+	private List<AddressEntity> addresseseEntity;
 
 
 	public Long getId() {
