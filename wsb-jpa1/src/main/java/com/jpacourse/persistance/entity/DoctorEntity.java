@@ -33,7 +33,7 @@ public class DoctorEntity {
 	private Specialization specialization;
 
 	//Relacja jednostronna, po stronie rodzica -> lekarz może mieć kilka wizyt w planie.
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "visit")
+	@OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<VisitEntity> visits;
 
 	//Relacja dwustronna (lekarz zna swoje adresy, a adres wie do kogo należy)

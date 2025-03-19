@@ -18,13 +18,14 @@ public class VisitEntity {
 	@Column(nullable = false)
 	private LocalDateTime time;
 
+
 	@ManyToOne
 	@JoinColumn(name = "DOCTOR_ID", nullable = false)
-	private DoctorEntity doctor; // Jednostronna relacja od strony dziecka
+	private DoctorEntity doctor; // Wiele wizyt może być przypisanych do jednego lekarza → VisitEntity to dziecko
 
 	@ManyToOne
 	@JoinColumn(name = "PATIENT_ID", nullable = false)
-	private PatientEntity patient; // Jednostronna relacja od strony dziecka
+	private PatientEntity patient; // Wiele wizyt może być przypisanych do jednego pacjenta → VisitEntity to dziecko
 
 	// Dwustronna relacja, jedna wizyta może mieć w sobie kilka medycznych zabiegów
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "visit")

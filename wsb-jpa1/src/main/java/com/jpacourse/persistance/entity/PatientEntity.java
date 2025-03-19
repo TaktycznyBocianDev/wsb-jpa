@@ -31,8 +31,9 @@ public class PatientEntity {
 	private LocalDate dateOfBirth;
 
 	//Relacja jednostronna, po stronie rodzica -> pacjent może mieć kilka wizyt w planie.
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "visit")
+	@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<VisitEntity> visits;
+
 
 	//Relacja jednostronna, po stronie rodzica -> pacjent może mieć kilka wizyt w planie.
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
